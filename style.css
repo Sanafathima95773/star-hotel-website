@@ -1,0 +1,1262 @@
+/* General Setup - Keep your existing root variables and body styles */
+:root {
+    --primary-color: #3f51b5; /* Indigo */
+    --secondary-color: #ff9800; /* Amber */
+    --text-color: #333;
+    --light-bg: #f4f4f4;
+    --logo-color: #ff8c42; /* Orange-red for the logo, as in the image */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    overflow-x: hidden; /* Prevents horizontal scroll from responsive issues */
+}
+
+/* -------------------------------------- */
+/* Navbar Styles (Corrected)              */
+/* -------------------------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Georgia', serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #303f9f;
+    white-space: nowrap; /* Prevent "LuxuryStay" from wrapping */
+}
+
+.logo::after {
+    content: none;
+}
+
+.nav-links {
+    display: flex; /* Ensure it's always a flex container on desktop */
+    align-items: center;
+    /* Removed flex-grow: 1; */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    margin: 0 1.2rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+    white-space: nowrap; /* Prevent nav items from wrapping */
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    left: 50%;
+    bottom: 0;
+    transition: width 0.3s ease-out, left 0.3s ease-out;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: auto; /* Pushes nav-right to the far right */
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    color: #555;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    white-space: nowrap; /* Prevents "Cart 0" from truncating */
+}
+
+.cart:hover {
+    color: var(--primary-color);
+}
+
+.cart i {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.cart-count {
+    background: var(--logo-color);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 50%;
+    margin-left: 0.3rem;
+    line-height: 1;
+}
+
+.login-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+    white-space: nowrap; /* Prevent "Login" from wrapping */
+}
+
+.login-btn:hover {
+    background: #303f9f;
+    transform: translateY(-2px);
+}
+
+.hamburger {
+    display: none; /* IMPORTANT: Hide by default on large screens */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 1rem; /* Give some space */
+}
+
+/* -------------------------------------- */
+/* Hero Section (Keep existing styles for hero-animated, hero-content etc.) */
+/* -------------------------------------- */
+.hero-animated {
+    background: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1958&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+    background-color: #444; 
+    height: 70vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* Dark overlay for better text readability */
+.hero-animated::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; 
+    color: white;
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+/* ... rest of your hero-content styles and animations ... */
+
+
+/* -------------------------------------- */
+/* Responsive Design (Media Queries) - Updated Breakpoints */
+/* -------------------------------------- */
+
+/* Adjust breakpoint for when nav links start to disappear */
+@media (max-width: 1080px) { /* Changed from 992px to 1080px */
+    .nav-links a {
+        margin: 0 0.8rem; /* Slightly less space between links */
+    }
+    .nav-right {
+        gap: 1rem;
+    }
+}
+
+/* This is the breakpoint where the hamburger menu should appear */
+@media (max-width: 900px) { /* Adjust this breakpoint as needed */
+    .hamburger {
+        display: block; /* Show hamburger */
+    }
+
+    .nav-links {
+        display: none; /* Hide desktop links */
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        position: absolute;
+        top: 70px; /* Adjust based on your navbar height */
+        left: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding-bottom: 1rem;
+        align-items: flex-start;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when active */
+    }
+
+    .nav-links a {
+        margin: 0.5rem 2rem;
+        width: calc(100% - 4rem);
+        text-align: left;
+    }
+
+    .nav-right {
+        /* On mobile, align login and cart next to hamburger */
+        margin-left: 0; 
+        gap: 0.8rem;
+    }
+    .cart {
+        font-size: 0.9rem;
+    }
+    .login-btn {
+        padding: 0.5rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 600px) { /* Smaller phones */
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .nav-right {
+        gap: 0.5rem;
+    }
+    /* Adjust order for very small screens if needed */
+    /* .cart { order: 2; } */
+    /* .login-btn { order: 1; } */
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    .hero-animated .cta-btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* -------------------------------------- */
+/* Hero Section (Replicated & Animated)   */
+/* -------------------------------------- */
+.hero-animated {
+    /* *** CRITICAL FIX: Use the image URL here *** */
+    background: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1958&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+    
+    background-color: #444; /* Fallback color */
+    height: 70vh; /* Ensures the section has vertical space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* Also, remove the unused .hero-promo-img CSS if you deleted the HTML tag: */
+/* DELETE THESE STYLES:
+.hero-promo-img {
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 3;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.2s;
+}
+*/
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Bring content above the overlay */
+    color: white;
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif; /* Elegant serif font for main title */
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    opacity: 0; /* Hidden initially for animation */
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    opacity: 0; /* Hidden initially for animation */
+}
+
+.hero-animated .cta-btn {
+    display: inline-block;
+    background: var(--logo-color); /* Orange-red for the Book Now button */
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 8px; /* Slightly more rounded */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    opacity: 0; /* Hidden initially for animation */
+}
+
+.hero-animated .cta-btn:hover {
+    background: #e67e3a; /* Darker orange-red */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------------------------- */
+/* Animations Keyframes                   */
+/* -------------------------------------- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation with delays */
+.hero-content h1.fade-in-item {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+.hero-content p.fade-in-item {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+.hero-animated .cta-btn.fade-in-item {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.9s;
+}
+
+
+/* -------------------------------------- */
+/* Responsive Design for Navbar & Hero    */
+/* -------------------------------------- */
+
+@media (max-width: 992px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+    .nav-links {
+        justify-content: flex-end; /* Push links to right when space is tighter */
+        margin-right: 1.5rem;
+    }
+    .nav-links a {
+        margin: 0 0.8rem;
+    }
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navbar Changes - Mobile layout */
+    .hamburger {
+        display: block; /* Show hamburger */
+    }
+
+    .nav-links {
+        display: none; /* Hide desktop links */
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        position: absolute;
+        top: 70px; /* Adjust based on your navbar height */
+        left: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding-bottom: 1rem;
+        align-items: flex-start; /* Align mobile links to left */
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when active */
+    }
+
+    .nav-links a {
+        margin: 0.5rem 2rem;
+        width: calc(100% - 4rem); /* Full width with padding */
+        text-align: left;
+    }
+
+    .nav-right {
+        gap: 1rem;
+    }
+    .cart {
+        font-size: 0.9rem;
+    }
+    .login-btn {
+        padding: 0.5rem 1rem;
+    }
+
+    /* Hero Section Mobile */
+    .hero-animated {
+    /* 1. Sets image, no repeat, centers it, and the crucial 'cover' property */
+    background: url('./images/hotel.png') no-repeat center center/cover; 
+    background-color: #444; 
+    
+    /* 2. Gives the section the required height */
+    height: 70vh; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; 
+}
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .hero-animated .cta-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .nav-right {
+        gap: 0.5rem;
+    }
+    .cart {
+        order: 2; /* Move cart after login button if needed */
+        margin-right: 0;
+    }
+    .login-btn {
+        order: 1; /* Move login button first if needed */
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Booking Form Section */
+.booking-form-section {
+    background: var(--light-bg);
+    padding: 1rem 2rem;
+}
+
+.booking-form {
+    display: flex;
+    gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form button {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+/* Check Availability button (orange) */
+.booking-btn {
+    background: linear-gradient(135deg, var(--logo-color), #ffb86b);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255,140,66,0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    white-space: nowrap;
+}
+
+.booking-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255,140,66,0.22);
+    opacity: 0.98;
+}
+
+.booking-btn:active {
+    transform: translateY(-1px) scale(0.995);
+}
+
+.booking-btn:focus {
+    outline: 3px solid rgba(255,140,66,0.18);
+    outline-offset: 2px;
+}
+
+/* Mobile: full width inside booking form */
+@media (max-width: 600px) {
+    .booking-form .booking-btn {
+        width: 100%;
+        padding: 0.85rem;
+    }
+}
+
+
+
+/* Rooms Showcase */
+/* --- Rooms & Suites Section Styles --- */
+.rooms-section {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: white; 
+    position: relative; /* Needed for absolute positioning of scroll arrows */
+}
+
+.rooms-section h2 {
+    font-size: 2.5rem;
+    font-family: 'Georgia', serif; /* Matching the font from the image */
+    font-weight: 500;
+    color: #2c3e50; 
+    margin-bottom: 0.5rem;
+}
+
+.rooms-intro {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+.rooms-grid {
+    display: grid;
+    /* Create a responsive grid: minmax(280px, 1fr) for flexibility */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.room-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures image and tag are clipped nicely */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+}
+
+.room-image-container {
+    position: relative;
+    height: 250px; /* Fixed height for image consistency */
+    overflow: hidden;
+}
+
+.room-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the container */
+    display: block;
+}
+
+/* Price Tag Styling */
+.price-tag {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    background: var(--logo-color); /* Orange/Red color defined earlier */
+    color: white;
+    padding: 5px 15px;
+    font-weight: bold;
+    border-radius: 2px 0 0 2px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.room-content {
+    padding: 1.5rem;
+}
+
+.room-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50; 
+    font-weight: 600;
+}
+
+.room-content p {
+    color: #777;
+    margin-bottom: 1.5rem;
+    min-height: 40px; /* Ensures vertical alignment when descriptions vary */
+}
+
+.room-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.capacity {
+    display: flex;
+    align-items: center;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.capacity i {
+    color: var(--primary-color); 
+    margin-right: 5px;
+}
+
+.add-to-cart-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+.add-to-cart-btn:hover {
+    background: #303f9f;
+}
+
+/* --- Optional: Scroll Arrows Styling --- */
+.scroll-arrows {
+    display: none; /* Hide by default; usually controlled by JS if grid scrolls */
+}
+/* If you want them to always show on the side like the image: */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+.left-arrow { left: 0; }
+.right-arrow { right: 0; }
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+    .rooms-section {
+        padding: 4rem 1rem;
+    }
+    .rooms-grid {
+        gap: 1.5rem;
+        /* Force single column on very small screens */
+        grid-template-columns: 1fr; 
+    }
+    .room-image-container {
+        height: 200px;
+    }
+}
+/* --- Rooms & Suites Section Styles --- */
+
+.rooms-grid {
+    display: grid;
+    /* This automatically handles column alignment, but we need content height consistency */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1250px;
+    margin: 0 auto;
+    align-items: stretch; /* IMPORTANT: Ensures all grid items stretch to the height of the tallest item */
+}
+
+/* Ensure the paragraph has a minimum height to prevent large variations */
+.room-content p {
+    color: #777;
+    margin-bottom: 1.5rem;
+    min-height: 40px; /* Adjust this value based on your typical description length */
+    line-height: 1.4;
+}
+
+.room-card {
+    /* ... keep your existing styles ... */
+    display: flex; /* IMPORTANT: Treat card content as a flex container */
+    flex-direction: column; /* Stack image, content, and footer vertically */
+}
+
+.room-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* Make the main content area stretch to fill available space */
+}
+
+.room-footer {
+    /* ... keep existing styles ... */
+    margin-top: auto; /* Push the footer to the bottom of the content area */
+}
+
+/* --- Gallery Section Styles --- */
+.gallery-section {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: white; /* Or var(--light-bg); */
+}
+
+.gallery-section h2 {
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-intro {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+.gallery-grid {
+    display: grid;
+    /* Responsive Grid: 3 columns on desktop, adapts to 2 or 1 on smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; /* Space between images */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden; /* Important for the hover effect */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px; /* Fixed height for consistent card size */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block;
+    transition: transform 0.4s ease; /* Smooth zoom on hover */
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08); /* Zoom effect */
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(var(--primary-color-rgb), 0.7); /* Use RGB for rgba */
+    color: white;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    transform: translateY(100%); /* Hidden below the item initially */
+    transition: transform 0.4s ease; /* Smooth slide-up on hover */
+    /* If primary color is not RGB, replace with a fixed rgba value e.g., rgba(63, 81, 181, 0.7) */
+}
+/* Define --primary-color-rgb in :root if you want to use it */
+:root {
+    --primary-color: #3f51b5; /* Indigo */
+    --primary-color-rgb: 63, 81, 181; /* RGB equivalent for rgba */
+    /* ... other vars ... */
+}
+
+
+.gallery-item:hover .overlay {
+    transform: translateY(0); /* Slide up to reveal */
+}
+
+/* --- Lightbox/Modal Styles --- */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2000; /* Sit on top */
+    padding-top: 60px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 80%; /* Max width of the image */
+    max-height: 90vh; /* Max height of the image */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+#lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Add some animations for the lightbox */
+.lightbox.fade-in {
+    animation: fadeInLightbox 0.3s forwards;
+}
+.lightbox.fade-out {
+    animation: fadeOutLightbox 0.3s forwards;
+}
+
+@keyframes fadeInLightbox {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOutLightbox {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* --- Responsive adjustments for gallery --- */
+@media (max-width: 768px) {
+    .gallery-section {
+        padding: 4rem 1rem;
+    }
+    .gallery-grid {
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 2 columns on tablets */
+    }
+    .gallery-item img {
+        height: 200px;
+    }
+    .lightbox-content {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Single column on small phones */
+    }
+    .gallery-item img {
+        height: 180px;
+    }
+    .gallery-section h2 {
+        font-size: 2rem;
+    }
+    .gallery-intro {
+        font-size: 1rem;
+    }
+}
+
+/* --- Services Section Styles (Image Replication) --- */
+.services-section {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: #f8f8f8; /* Light gray background matching the image */
+}
+
+.services-section h2 {
+    font-size: 2.5rem;
+    font-family: serif; /* Use a serif font for the title for that elegant look */
+    font-weight: 500;
+    color: #2c3e50; /* Darker text color */
+    margin-bottom: 0.5rem;
+}
+
+.services-intro {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    line-height: 1.6;
+}
+
+.services-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Handles responsiveness by wrapping cards on smaller screens */
+    flex-wrap: wrap; 
+}
+
+.service-card {
+    background: white;
+    padding: 2rem 1.5rem;
+    width: 280px; /* Fixed width for card consistency */
+    text-align: center;
+    border-radius: 8px;
+    /* Box shadow is key to replicating the floating effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: pointer; /* Indicates it is clickable */
+    border: 1px solid #eee;
+}
+
+.service-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Lift on hover */
+    transform: translateY(-3px);
+}
+
+.icon-circle {
+    /* The primary color circle background */
+    background: #3f51b5; /* Primary Indigo */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-placeholder {
+    /* Using emojis here, replace with real icons (like Font Awesome) */
+    font-size: 1.8rem;
+    color: white;
+}
+
+.service-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    color: #777;
+    line-height: 1.4;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 1200px) {
+    .services-grid {
+        gap: 1rem;
+    }
+}
+@media (max-width: 600px) {
+    .services-section {
+        padding: 4rem 1rem;
+    }
+    .service-card {
+        width: 90%; /* Allows cards to stretch on very small screens */
+    }
+}
+
+/* Basic Reset and Layout */
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+h2 {
+    color: #4169e1; /* The blue color used in previous components */
+    margin-bottom: 25px;
+}
+
+a {
+    color: #4169e1;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Main Layout */
+.contact-main {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.contact-card {
+    display: flex;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+/* Contact Information Section */
+/* Basic Reset and Layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+h2, h3 {
+    color: #4169e1; /* Use the blue from your navbar */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Flex layout for Form and Info */
+.contact-content {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Form Styling */
+.contact-form-area {
+    flex: 2; /* Takes up more space than the info sidebar */
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important for padding/width calculation */
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #4169e1;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #3150b0;
+}
+
+/* Info Sidebar Styling */
+.contact-info {
+    flex: 1; /* Takes up less space */
+    background-color: #e9ecef ;
+     /* Light background for contrast */
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.info-item i {
+    color: #ff8c00; /* Orange color from your navbar logo */
+    font-size: 20px;
+    margin-right: 15px;
+    min-width: 20px; /* Ensures consistent alignment */
+    padding-top: 2px;
+}
+
+
+
+.social-links a {
+    color: #4169e1;
+    font-size: 24px;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ff8c00;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    .contact-content {
+        flex-direction: column; /* Stack form and info vertically on smaller screens */
+    }
+
+    .contact-form-area, .contact-info {
+        flex: none;
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+/* Styling for the main footer container */
+.site-footer-v2 {
+    background-color: #363636; /* Dark gray background */
+    color: white; 
+    padding: 30px 20px;
+    text-align: center; 
+    width: 100%;
+    box-sizing: border-box; 
+    /* Use flexbox to easily center the contact box and content vertically/horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Styling for the copyright text */
+.copyright-text-v2 {
+    font-size: 15px;
+    margin-bottom: 15px; /* Added space before the box */
+}
+
+/* Styling for the new light-colored contact box */
+.footer-contact-box {
+    background-color:   #363636;
+    color: white; /* Dark text inside the light box */
+    padding: 25px 40px;
+    border-radius: 8px;
+    max-width: 600px; /* Constrain the width of the box */
+    width: 90%;
+    margin-bottom: 10px; /* Optional: Space below the box if you add more content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the contact information line inside the box */
+.contact-info-v2 {
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Styling for the links (Email and Phone) inside the box */
+.contact-info-v2 a {
+    color: white; /* Use a prominent blue for the links */
+    text-decoration: white;
+    transition: color 0.3s ease;
+}
+
+.contact-info-v2 a:hover {
+    color: white; /* Orange hover effect */
+    text-decoration: underline;
+}
+.contact-info {
+    color: #4169e1;
+    font-size: 16px;
+    margin-top: 8px;
+    line-height: 1.5;
+}
